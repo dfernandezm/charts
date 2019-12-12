@@ -21,6 +21,8 @@ spec:
           securityContext:
             privileged: true
           env:
+          - name: CHECK_INTERVAL_SECONDS
+            value: "21600"
           - name: STARTUP_SCRIPT
             value: |
               #! /bin/bash
@@ -29,6 +31,7 @@ spec:
               set -o nounset
               cd /home/app
               ./myiac setupEnvironment --project moneycol --env dev
-              ./myiac deploy --app traefik --project moneycol --env dev
+              export GOOGLE_APPLICATION_CREDENTIALS="/home/app/account.json"
+              ./myiac deploy --app traefik-dev --project moneycol --env dev
               touch /tmp/foo
               echo done

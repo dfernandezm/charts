@@ -2,5 +2,5 @@ project: moneycol
 env: dev
 image:
   repository: gcr.io/moneycol/myiac
-  tag: 0.1.0-0bcd1d2
-  pullPolicy: IfNotPresent
+  tag: 0.1.0-6e5fba4
+  pullPolicy: Always
