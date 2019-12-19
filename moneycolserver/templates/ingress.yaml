@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "name" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: moneycolserver
+  - http:
+      paths:
+      - path: /graphql
+        backend:
+          serviceName: moneycolserver
+          servicePort: 80
+      - path: /api
+        backend:
+          serviceName: moneycolserver
+          servicePort: 80
+      - path: /.well-known
+        backend:
+          serviceName: moneycolserver
+          servicePort: 80

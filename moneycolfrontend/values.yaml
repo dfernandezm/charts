@@ -1,0 +1,11 @@
+project: moneycol
+env: dev
+apiBaseUrl: "moneycolserver"
+image:
+  # decide if its moneycolfrontend or moneycol-frontend
+  repository: gcr.io/moneycol/moneycolfrontend
+  # tag: 0.1.0-a3d44bd
+  tag: 0.1.0-5e6e293
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
