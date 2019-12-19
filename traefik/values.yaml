@@ -34,9 +34,12 @@ serviceType: NodePort
 whiteListSourceRange: []
 externalTrafficPolicy: Cluster
 replicas: 1
-# startupArguments:
+startupArguments:
 #   - "--ping"
 #   - "--ping.entrypoint=http"
+ - --defaultentrypoints=http,https
+ - --entrypoints=Name:https Address::443 TLS
+ - --entrypoints=Name:http Address::80
 
 # /ping health-check entry point.
 # pingEntryPoint: http
