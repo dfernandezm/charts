@@ -18,5 +18,3 @@ spec:
     targetPort: http
   - port: 443
     name: https
-
-    # helm upgrade --set externalIps={a,b,c} opining-frog deploy/traefik/chart --debug
