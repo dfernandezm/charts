@@ -5,8 +5,9 @@ image:
   # repository: elasticsearch/elasticsearch
   # tag: 6.5.0
   # gcr.io/moneycol/elasticsearch:0.1.0-f4c16b8
-  registry: gcr.io
+  registry: eu.gcr.io
   repository: moneycol/elasticsearch
+  # tag: 0.1.0-f4c16b8
   tag: 0.1.0-f4c16b8
   pullPolicy: IfNotPresent
 

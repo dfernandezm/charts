@@ -1,6 +1,6 @@
 project: moneycol
 env: dev
 image:
-  repository: gcr.io/moneycol/myiac
+  repository: eu.gcr.io/moneycol/myiac
   tag: 0.1.0-434290b
   pullPolicy: Always
