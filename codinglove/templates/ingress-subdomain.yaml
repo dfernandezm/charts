@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: codinglove-by-host
+  labels:
+    app: codinglove-by-host
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    # This annotation rewrites the target from / -> /graphql
+    # ingress.kubernetes.io/rewrite-target: /graphql 
+spec:
+  rules:
+  - host: codinglove.moneycol.ml
+    http:
+      paths:
+      - backend:
+          serviceName: "codinglove-nodeport"
+          servicePort: http
+        path: /

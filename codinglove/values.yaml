@@ -1,0 +1,11 @@
+project: moneycol
+env: dev
+image:
+  repository: eu.gcr.io/moneycol/codinglove
+  tag: 1.0.0-abcd
+  pullPolicy: IfNotPresent
+
+configmap:
+  name: codinglove-server-config
+
+replicaCount: 1

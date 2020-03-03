@@ -1,0 +1,19 @@
+# This seems to be needed instead of the basic ClusterIP service so 
+# hostname-based Ingresses can be done
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "name" . }}-nodeport
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    app: {{ template "name" . }}
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8096
+  type: NodePort
