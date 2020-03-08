@@ -42,11 +42,20 @@ spec:
           env:
             - name: "ENV"
               value: {{ .Values.env }}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
-
+          volumeMounts:
+          - name: google-cloud-key
+            mountPath: /var/secrets/google
+      volumes:
+        - name: google-cloud-key
+          secret:
+            secretName: firestore-key # secret manually created, see instructions at gcp-config-connector/README.md
+            
           resources:
             limits:
               cpu: 1
@@ -54,6 +63,6 @@ spec:
             requests:
               cpu: 250m
               memory: 200Mi
-
+        
       nodeSelector:
-        cloud.google.com/gke-nodepool: "{{ .Values.project }}-{{ .Values.env }}-applications-pool"
+        cloud.google.com/gke-nodepool: "{{ .Values.project }}-{{ .Values.env }}-elasticsearch-pool"

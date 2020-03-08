@@ -1,11 +1,12 @@
 project: moneycol
 env: dev
 image:
-  repository: eu.gcr.io/moneycol/collections
-  tag: 0.1.0-973e915
+  repository: eu.gcr.io/moneycol/collections-api
+  tag: 0.1.0
   pullPolicy: IfNotPresent
 
 configmap:
   name: collections-server-config
 
 replicaCount: 1
+gcpProjectId: "moneycol"

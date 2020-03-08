@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "name" . }}
+  name: collections-by-host
   labels:
-    app: {{ template "name" . }}
+    app: collections-by-host
     chart: {{ template "chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -11,10 +11,10 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: collections
-  - http:
+  - host: collections.moneycol.ml
+    http:
       paths:
-      - path: /
-        backend:
-          serviceName: collections
-          servicePort: 80
+      - backend:
+          serviceName: "collections-api"
+          servicePort: http
+        path: /

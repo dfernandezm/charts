@@ -1,3 +1,4 @@
 .git
 # OWNERS file for Kubernetes
 OWNERS
+gcp-config-connector
