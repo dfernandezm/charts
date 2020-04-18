@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: slack-ingress
+  labels:
+    app: slack-ingress
+    chart: {{ template "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: slack.moneycol.ml
+    http:
+      paths:
+      - backend:
+          serviceName: "slack-app-py"
+          servicePort: http
+        path: /
+   # the secret was created with kubectl previously (see notes/readme)
+  tls:
+  - hosts:
+    - slack.moneycol.ml
+    secretName: traefik-dev-tls-cert

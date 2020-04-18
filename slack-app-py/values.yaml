@@ -1,0 +1,9 @@
+project: moneycol
+env: dev
+image:
+  repository: eu.gcr.io/moneycol/slack-app-py
+  tag: t2
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+gcpProjectId: moneycol
