@@ -17,3 +17,5 @@ In the current version of `collections-api`, access to Cloud Firestore through s
 kubectl create secret generic firestore-key --from-file=key.json=/Users/david/moneycol-firestore-collections-api.json
 ```
 
+The manifests included here are effective only if the `config-connector` addon is installed.
+

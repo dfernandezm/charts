@@ -55,7 +55,7 @@ spec:
         - name: google-cloud-key
           secret:
             secretName: firestore-key # secret manually created, see instructions at gcp-config-connector/README.md
-            
+
           resources:
             limits:
               cpu: 1
