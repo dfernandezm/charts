@@ -2,11 +2,18 @@ project: moneycol
 env: dev
 image:
   repository: eu.gcr.io/moneycol/moneycolserver
-  #tag: 0.1.0-9ff9cd6
-  tag: 0.1.0-973e915
+  tag: "0.6.4-b2e259"
   pullPolicy: IfNotPresent
 
 configmap:
   name: moneycol-server-config
 
 replicaCount: 1
+
+# This is the Service account key
+saSecretName: moneycol-server-secret
+
+# API key for firebase
+firebase:
+  secretName: firebase-api-secret
+  secretKey: firebaseApiKey

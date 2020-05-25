@@ -41,18 +41,33 @@ spec:
                 - IPC_LOCK
           env:
             - name: "ENV"
-              value: {{ .Values.env }}
+              value: "{{ .Values.env }}"
             - name: "COLLECTIONS_API_HOST"
               value: "collections-api"
+            - name: "FIREBASE_API_KEY"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.firebase.secretName }}
+                  key: {{ .Values.firebase.secretKey }}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/var/secrets/google/{{ .Values.saSecretName }}.json"
+          volumeMounts:
+           - name:  google-cloud-keys
+             mountPath: "/var/secrets/google"
+             readOnly: true
           ports:
             - name: http
               containerPort: 4000
               protocol: TCP
-
+      volumes:
+        - name: google-cloud-keys
+          secret:
+            secretName: {{ .Values.saSecretName }} # secret created with myiac, see help
+            
           resources:
             limits:
-              cpu: 700m
-              memory: 200Mi
+              cpu: 400m
+              memory: 300Mi
             requests:
               cpu: 100m
               memory: 100Mi
