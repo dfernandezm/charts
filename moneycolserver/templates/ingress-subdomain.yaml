@@ -13,10 +13,22 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /graphql 
 spec:
   rules:
-  - host: graphql.moneycol.ml
+  - host: graphql-dev.moneycol.net
     http:
       paths:
       - backend:
-          serviceName: "moneycolserver-nodeport"
-          servicePort: http
+          serviceName: moneycolserver
+          servicePort: 80
         path: /
+      - backend:
+          serviceName: moneycolserver
+          servicePort: 80
+        path: /graphql
+      - backend:
+          serviceName: moneycolserver
+          servicePort: 80
+        path: /api
+      - backend:
+          serviceName: moneycolserver
+          servicePort: 80
+        path: /.well-known

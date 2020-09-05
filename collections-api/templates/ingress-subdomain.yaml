@@ -11,7 +11,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: collections.moneycol.ml
+  - host: collections.moneycol.net
     http:
       paths:
       - backend:

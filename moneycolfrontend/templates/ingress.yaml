@@ -21,5 +21,5 @@ spec:
   # the secret was created with kubectl previously (see notes/readme)
   tls:
   - hosts:
-    - dev.moneycol.ml
+    - dev.moneycol.net
     secretName: traefik-dev-tls-cert
