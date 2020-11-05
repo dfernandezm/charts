@@ -64,13 +64,13 @@ spec:
           secret:
             secretName: {{ .Values.saSecretName }} # secret created with myiac, see help
             
-          resources:
-            limits:
-              cpu: 400m
-              memory: 300Mi
-            requests:
-              cpu: 100m
-              memory: 100Mi
+      resources:
+        limits:
+          cpu: 400m
+          memory: 300Mi
+        requests:
+          cpu: 100m
+          memory: 100Mi
 
       nodeSelector:
         cloud.google.com/gke-nodepool: "{{ .Values.project }}-{{ .Values.env }}-applications-pool"

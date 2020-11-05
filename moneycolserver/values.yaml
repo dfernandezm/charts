@@ -2,7 +2,7 @@ project: moneycol
 env: dev
 image:
   repository: eu.gcr.io/moneycol/moneycolserver
-  tag: "0.6.4-b2e259"
+  tag: "0.7.0-b2e259"
   pullPolicy: IfNotPresent
 
 configmap:
