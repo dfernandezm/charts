@@ -11,10 +11,9 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: collections.moneycol.net
-    http:
-      paths:
-      - backend:
-          serviceName: "collections-api"
-          servicePort: http
-        path: /
+    - host: collections.moneycol.net
+      http:
+        paths:
+          - backend:
+              serviceName: "collections-api"
+              servicePort: 8080

@@ -56,13 +56,13 @@ spec:
           secret:
             secretName: firestore-key # secret manually created, see instructions at gcp-config-connector/README.md
 
-          resources:
-            limits:
-              cpu: 1
-              memory: 500Mi
-            requests:
-              cpu: 250m
-              memory: 200Mi
+      resources:
+        limits:
+          cpu: 1
+          memory: 500Mi
+        requests:
+          cpu: 250m
+          memory: 200Mi
         
       nodeSelector:
         cloud.google.com/gke-nodepool: "{{ .Values.project }}-{{ .Values.env }}-elasticsearch-pool"

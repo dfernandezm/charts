@@ -32,3 +32,7 @@ spec:
           serviceName: moneycolserver
           servicePort: 80
         path: /.well-known
+  tls:
+  - hosts:
+    - graphql-dev.moneycol.net
+    secretName: traefik-dev-tls-cert

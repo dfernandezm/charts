@@ -11,13 +11,12 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: moneycolfrontend
-    - http:
+   - host: dev.moneycol.net
+     http:
         paths:
-          - path: /
-            backend:
-              serviceName: moneycolfrontend
-              servicePort: 80
+        - backend:
+            serviceName: moneycolfrontend
+            servicePort: 80
   # the secret was created with kubectl previously (see notes/readme)
   tls:
   - hosts:
