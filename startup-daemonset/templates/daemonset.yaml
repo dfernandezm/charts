@@ -23,15 +23,27 @@ spec:
           env:
           - name: CHECK_INTERVAL_SECONDS
             value: "21600"
+          - name: CF_EMAIL
+            value: "{{ .Values.dns.cloudflare.email }}"
+          - name: CF_API_KEY
+            valueFrom:
+              - valueFrom:
+                  secretKeyRef:
+                    # This must be created in the cluster beforehand
+                    # ./myiac createSecret --secretName cloudflare-api-key-sec --literal CF_API_KEY=xxx
+                    name: cloudflare-api-key
+                    key: CF_API_KEY
           - name: STARTUP_SCRIPT
             value: |
               #! /bin/bash
               set -o errexit
               set -o pipefail
               set -o nounset
-              cd /home/app
-              ./myiac setupEnvironment --project moneycol --env dev
-              export GOOGLE_APPLICATION_CREDENTIALS="/home/app/account.json"
-              ./myiac deploy --app traefik-dev --project moneycol --env dev
+              myiac setupEnvironment --provider gcp --project moneycol --keyPath /home/app/account.json --zone europe-west1-b --env dev
+
+              # CF env vars from manifest
+              echo "CF email $CF_EMAIL"
+              export CHARTS_PATH=/workdir/charts
+              myiac updateDnsWithClusterIps --dnsProvider cloudflare --domain moneycol.net
               touch /tmp/foo
               echo done

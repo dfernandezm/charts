@@ -2,5 +2,9 @@ project: moneycol
 env: dev
 image:
   repository: eu.gcr.io/moneycol/myiac
-  tag: 0.1.0-434290b
+  tag: app-latest
   pullPolicy: Always
+
+dns:
+  cloudflare:
+    email: morenza@gmail.com
