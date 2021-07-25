@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: 1.0.0
+description: Data Collector for Moneycol
+maintainers:
+- email: moneycol@moneycol.com
+  name: moneycol
+name: data-collector
+version: 1.0.0

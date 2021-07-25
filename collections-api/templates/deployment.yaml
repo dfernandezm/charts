@@ -42,6 +42,8 @@ spec:
           env:
             - name: "ENV"
               value: {{ .Values.env }}
+              # it should use workload identity, but for now this secret is created by hand with 
+              # kubectl create secret generic firestore-key --from-file=key.json=/Users/david/moneycol-firestore-collections-api.json
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /var/secrets/google/key.json
           ports:

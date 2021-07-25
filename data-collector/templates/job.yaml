@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Values.jobName }}"
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 86400
+  template:
+    spec:
+      containers:
+        - name: "{{ .Values.jobName }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: CHROME_DRIVER_LOCATION
+              value: /usr/bin/chromedriver
+              # should use workload identity
+              # initially this is created by hand with command
+              # kubectl create secret generic gcs-key --from-file=gcs-key.json=/Users/david/development/repos/moneycol-gcs.json
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/gcs-key.json
+          resources:
+            limits:
+              cpu: 2
+              memory: 3Gi
+            requests:
+              cpu: 1
+              memory: 500Mi
+          volumeMounts:
+            - mountPath: /var/secrets/google
+              name: google-cloud-keys
+      volumes:
+        - name: google-cloud-keys
+          secret:
+            defaultMode: 420
+            secretName: gcs-key
+      nodeSelector:
+        cloud.google.com/gke-nodepool: "indexing-pool"
+
+      restartPolicy: Never
