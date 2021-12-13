@@ -2,7 +2,7 @@ project: moneycol
 env: dev
 image:
   repository: eu.gcr.io/moneycol/moneycolserver
-  tag: "0.7.0-b2e259"
+  tag: "0.8.0-40c6095"
   pullPolicy: IfNotPresent
 
 configmap:
@@ -10,10 +10,14 @@ configmap:
 
 replicaCount: 1
 
-# This is the Service account key
+# This is the Service account key, Firestore Admin permissions are enough
+# for the users and auth modules
+# kubectl create secret generic moneycol-server-secret --from-file=/Users/david/development/repos/moneycol-server-secret.json
 saSecretName: moneycol-server-secret
 
 # API key for firebase
+# See Quiver/Firebase in project
+# kubectl create secret generic firebase-api-secret --from-literal=firebaseApiKey=AIza***
 firebase:
   secretName: firebase-api-secret
   secretKey: firebaseApiKey

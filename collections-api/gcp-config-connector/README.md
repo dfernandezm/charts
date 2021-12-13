@@ -1,5 +1,7 @@
 ### Config Connector Kubernetes manifests
 
+Note: this is currently unused as the cluster does not have enough space
+
 [Config Connector for GCP](https://cloud.google.com/config-connector/docs/how-to/install-upgrade-uninstall) allows
 installing Service Account resources as regular Kubernetes manifests. 
 

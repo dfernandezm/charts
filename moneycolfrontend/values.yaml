@@ -3,7 +3,7 @@ env: dev
 apiBaseUrl: "moneycolserver"
 image:
   repository: eu.gcr.io/moneycol/moneycolfrontend
-  tag: "0.6.4-b2e259"
+  tag: "0.9.3-0a2bea9"
   pullPolicy: IfNotPresent
 
 replicaCount: 1

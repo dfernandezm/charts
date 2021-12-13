@@ -1,8 +1,8 @@
 project: moneycol
 env: dev
 image:
-  repository: eu.gcr.io/moneycol/collections-api
-  tag: "0.6.4-b2e259"
+  repository: eu.gcr.io/moneycol/collections
+  tag: "0.7.2-jib-cb2-3b0eab5"
   pullPolicy: IfNotPresent
 
 configmap:

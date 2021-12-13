@@ -19,6 +19,8 @@ spec:
               # kubectl create secret generic gcs-key --from-file=gcs-key.json=/Users/david/development/repos/moneycol-gcs.json
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /var/secrets/google/gcs-key.json
+            - name: CRAWLING_DONE_TOPIC_NAME 
+              value: "dev.crawler.events"
           resources:
             limits:
               cpu: 2

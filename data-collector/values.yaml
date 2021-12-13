@@ -1,6 +1,6 @@
 jobName: data-collector-colnect
 image:
   repository: eu.gcr.io/moneycol/data-collector
-  tag: "0.1.5-730bf44"
+  tag: "0.2.1-reducedtest2"
   pullPolicy: Always
 replicaCount: 1

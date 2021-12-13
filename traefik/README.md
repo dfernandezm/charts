@@ -1,5 +1,13 @@
 # Traefik
 
+## Notes for moneycol
+
+Deploy it with `hostNetwork: true` to be able to access port 80/443 in the hosting node. 
+For the ingresses to work, the IP of the node running `traefik` needs to be put in Cloudflare (to avoid using Load Balancers).
+
+All the setup needed to get IPS in Cloudflare is handled by `startup-script` Daemonset managed by `myiac` since
+version `0.6.0` (see PR: https://github.com/iac-io/myiac/pull/91)
+
 [Traefik](https://traefik.io/) is a modern HTTP reverse proxy and load balancer made to deploy
 microservices with ease.
 
