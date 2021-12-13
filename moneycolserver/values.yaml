@@ -10,7 +10,8 @@ configmap:
 
 replicaCount: 1
 
-# This is the Service account key
+# This is the Service account key, Firestore Admin permissions are enough
+# for the users and auth modules
 # kubectl create secret generic moneycol-server-secret --from-file=/Users/david/development/repos/moneycol-server-secret.json
 saSecretName: moneycol-server-secret
 
