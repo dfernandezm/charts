@@ -56,6 +56,7 @@ spec:
       {{- else }}
       serviceAccountName: default
       {{- end }}
+      hostNetwork: true
       terminationGracePeriodSeconds: 60
       {{- if .Values.nodeSelector }}
       nodeSelector:
@@ -77,6 +78,13 @@ spec:
       containers:
       - image: {{ .Values.image }}:{{ .Values.imageTag }}
         name: {{ template "traefik.fullname" . }}
+        args:
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
+            - --entrypoints.ping.address=:10254
+            - --ping.entrypoint=ping
+            - --log.level=ERROR
+            - --providers.kubernetescrd
         resources:
         {{- if or .Values.cpuRequest .Values.memoryRequest .Values.cpuLimit .Values.memoryLimit }}
           requests:
