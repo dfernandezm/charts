@@ -23,10 +23,10 @@ spec:
               value: "dev.crawler.events"
           resources:
             limits:
-              cpu: 2
+              cpu: 1
               memory: 3Gi
             requests:
-              cpu: 1
+              cpu: 500m
               memory: 500Mi
           volumeMounts:
             - mountPath: /var/secrets/google
