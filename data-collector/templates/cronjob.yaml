@@ -1,0 +1,50 @@
+{{ if eq .Values.deployCron true }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "{{ .Values.jobName }}-cron"
+spec:
+  schedule: "15 1 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: "{{ .Values.jobName }}"
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+              env:
+                - name: CHROME_DRIVER_LOCATION
+                  value: /usr/bin/chromedriver
+                  # should use workload identity
+                  # initially this is created
+                  # by TF: data-collector-key.json
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: /var/secrets/google/data-collector-key.json
+                - name: CRAWLING_DONE_TOPIC_NAME 
+                  value: "dev.crawler.events"
+
+                # This is a default, the code gets the date of today  
+                - name: DATA_URI 
+                  value: "colnect/latest"
+              resources:
+                limits:
+                  cpu: 1
+                  memory: 3Gi
+                requests:
+                  cpu: 500m
+                  memory: 500Mi
+              volumeMounts:
+                - mountPath: /var/secrets/google
+                  name: google-cloud-keys
+          volumes:
+            - name: google-cloud-keys
+              secret:
+                defaultMode: 420
+                secretName: data-collector-key
+          nodeSelector:
+            cloud.google.com/gke-nodepool: "indexing-pool"
+
+          restartPolicy: Never
+{{ end }}
