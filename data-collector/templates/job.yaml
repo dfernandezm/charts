@@ -1,3 +1,5 @@
+{{ if eq .Values.deployCron false }}
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -21,6 +23,8 @@ spec:
               value: /var/secrets/google/gcs-key.json
             - name: CRAWLING_DONE_TOPIC_NAME 
               value: "dev.crawler.events"
+            - name: DATA_URI 
+              value: "colnect/14-01-2022"
           resources:
             limits:
               cpu: 1
@@ -40,3 +44,5 @@ spec:
         cloud.google.com/gke-nodepool: "indexing-pool"
 
       restartPolicy: Never
+{{ end }}
+
