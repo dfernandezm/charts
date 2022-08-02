@@ -5,7 +5,7 @@ kind: CronJob
 metadata:
   name: "{{ .Values.jobName }}-cron"
 spec:
-  schedule: "15 1 * * 0"
+  schedule: "{{ .Values.cronSchedule }}"
   jobTemplate:
     spec:
       template:
