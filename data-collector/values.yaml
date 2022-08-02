@@ -1,3 +1,9 @@
+# Deploy this cron:
+#
+# gcloud config set account my-email
+# gcloud container clusters get-credentials cluster-dev2 --zone europe-west1-b --project moneycol
+# helm delete data-collector-cron
+# helm install data-collector-cron data-collector
 jobName: data-collector-colnect
 image:
   repository: eu.gcr.io/moneycol/data-collector-node
@@ -5,3 +11,6 @@ image:
   pullPolicy: Always
 replicaCount: 1
 deployCron: true
+
+# 28th of each month
+cronSchedule: '15 1 28 * 0'
